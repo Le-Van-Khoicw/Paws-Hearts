@@ -1,179 +1,272 @@
-# Paws&Hearts - Ứng dụng với tính năng nhận nuôi động vật cơ nhỡ
+# Paws & Hearts
 
-# UI figma
+**A community-focused Android application for pet adoption, social interaction, and animal-support activities.**
 
-https://www.figma.com/design/UwuzUCmsJjyzOvyAOjTwII/UI?node-id=0-1&p=f&t=ih4SgHjN8IlcIb1s-0
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Android](https://img.shields.io/badge/Android-API_24%2B-3DDC84?logo=android&logoColor=white)](https://developer.android.com/)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?logo=jetpackcompose&logoColor=white)](https://developer.android.com/compose)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth_%7C_Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
 
-## 1. Tên dự án và chủ đề
+Paws & Hearts is an academic team project built to connect pet lovers, support pet-adoption listings, and provide community features in one Android application. The project uses a feature-oriented, MVVM-style structure with Jetpack Compose, Firebase, Room, and Cloudinary.
 
-###  Ý nghĩa tên Paws Hearts
+> This repository is a student project and is not a production-ready animal-welfare or payment platform.
 
-Paws Hearts là sự kết hợp của hai từ mang ý nghĩa sâu sắc và liên quan đến mục đích của dự án:
+## Design
 
-- **Paws (Bàn chân thú cưng):** Đại diện cho các loài vật nuôi, thú cưng, là đối tượng chính mà ứng dụng hướng đến. Nó gợi lên sự gần gũi, đáng yêu và mong manh của những người bạn bốn chân.
-- **Hearts (Trái tim):** Tượng trưng cho tình yêu thương, lòng nhân ái, sự sẻ chia và kết nối giữa những người yêu thú cưng. Nó cũng thể hiện tinh thần cộng đồng, nơi mọi người cùng chung tay chăm sóc và bảo vệ động vật.
+[View the original Figma design](https://www.figma.com/design/UwuzUCmsJjyzOvyAOjTwII/UI?node-id=0-1&p=f&t=ih4SgHjN8IlcIb1s-0)
 
-Kết hợp lại, **Paws&Hearts** mang ý nghĩa về một nền tảng nơi tình yêu thương và sự quan tâm dành cho thú cưng được lan tỏa, kết nối những trái tim nhân ái để cùng chăm sóc và tạo mái ấm cho những người bạn động vật.
+## Implemented features
 
-###  Sơ lược về dự án
+### Authentication and profiles
 
-Paws Hearts là một ứng dụng di động toàn diện, được thiết kế để kết nối cộng đồng những người yêu thú cưng và hỗ trợ các hoạt động liên quan đến chăm sóc, nhận nuôi và bảo vệ động vật:
+- Register and sign in with email/password.
+- Sign in with a Google account.
+- Maintain authenticated navigation and logout state.
+- View and update profile information, including name, email, phone number, address, and avatar.
+- Follow and unfollow other users.
+- Cache profile data locally with Room.
 
-- **Cộng đồng sôi nổi:** Người dùng có thể chia sẻ khoảnh khắc, kinh nghiệm chăm sóc, và kết nối với những người có cùng sở thích.
-- **Hỗ trợ nhận nuôi:** Nền tảng tạo điều kiện cho việc đăng tin và tìm kiếm thú cưng cần mái ấm mới, giúp động vật cơ nhỡ tìm được gia đình yêu thương.
-- **Quản lý thông tin thú cưng:** Cung cấp công cụ để người dùng theo dõi lịch sử tiêm chủng, khám bệnh và các thông tin quan trọng khác của thú cưng.
-- **Quyên góp và hỗ trợ:** Tính năng quyên góp giúp các tổ chức và cá nhân có thể kêu gọi hoặc đóng góp cho các hoạt động từ thiện, hỗ trợ động vật gặp khó khăn.
-- **Tương tác đa dạng:** Người dùng có thể tham gia vào các hoạt động, sự kiện, gửi tin nhắn và tương tác qua lại để xây dựng một cộng đồng vững mạnh.
+### Community feed
 
-## 2. Lý do lựa chọn dự án
+- Create text and image posts.
+- Receive real-time post updates from Firestore.
+- Search community posts.
+- Like and comment on posts.
+- View a personal post list.
+- Include a Firestore-based notification prototype for post interactions.
 
-   Dự án Paws Hearts được lựa chọn với nhiều lý do thiết thực, mang lại giá trị cho cộng đồng và cơ hội rèn luyện kỹ năng phát triển:
+### Pet adoption
 
-   - **Thiết thực và có tác động xã hội:**
-     - Hỗ trợ giải quyết vấn đề thú cưng bị bỏ rơi, giúp chúng tìm được mái ấm mới thông qua tính năng nhận nuôi.
-     - Xây dựng một cộng đồng vững mạnh, nơi những người yêu thú cưng có thể chia sẻ kiến thức, kinh nghiệm, và hỗ trợ lẫn nhau trong việc chăm sóc thú cưng.
-     - Thúc đẩy các hoạt động từ thiện, quyên góp cho các tổ chức bảo vệ động vật, góp phần nâng cao ý thức cộng đồng về trách nhiệm với thú cưng.
-   - **Tập trung vào minh bạch & tin cậy:**
-     - Đảm bảo tính minh bạch trong các hoạt động cộng đồng và quyên góp, tạo niềm tin cho người dùng.
-     - Cung cấp các công cụ quản lý thông tin thú cưng rõ ràng, giúp chủ nuôi dễ dàng theo dõi sức khỏe và tình trạng của vật nuôi.
-   - **Rèn luyện kỹ năng phát triển di động hiện đại:**
-     - Sử dụng Kotlin và Jetpack Compose, những công nghệ mới nhất và mạnh mẽ nhất cho phát triển ứng dụng Android.
-     - Thực hành xây dựng ứng dụng với kiến trúc MVVM, Room Database, DataStore và tích hợp Firebase mạnh mẽ (Authentication, Firestore, Storage).
-     - Nâng cao kỹ năng về quản lý trạng thái, tương tác người dùng, và tối ưu hóa hiệu suất ứng dụng di động.
+- Create adoption listings with pet details and an image.
+- Browse and search available adoption posts.
+- Filter listings by pet attributes such as species, age, and location.
+- Open a detailed view with health, adoption-requirement, and contact information.
 
-## 3. Công nghệ sử dụng
+### Community activities
 
-   Dự án Paws Hearts được xây dựng trên nền tảng các công nghệ hiện đại và mạnh mẽ để đảm bảo hiệu suất, khả năng mở rộng và trải nghiệm người dùng tốt nhất:
+- Browse real-time activity listings.
+- View activity details and register to participate.
+- Provide create, update, and delete controls for users marked as administrators.
 
-   ###  Phát triển di động (Mobile Development)
+### Messaging
 
-   - **Ngôn ngữ lập trình:** Kotlin
-   - **Framework UI:** Jetpack Compose
-   - **Kiến trúc ứng dụng:** MVVM (Model-View-ViewModel) với Android Architecture Components (Lifecycle, ViewModel, Room)
-   - **Cơ sở dữ liệu cục bộ:** Room Persistence Library và Proto DataStore
-   - **Quản lý bất đồng bộ:** Kotlin Coroutines và Flow
-   - **Tải và hiển thị hình ảnh:** Coil Compose
+- Send and receive text messages in real time.
+- Share images, files, and locations inside conversations.
+- Persist messages locally with Room.
+- Track outgoing messages with `SENDING`, `SENT`, and `FAILED` states.
+- Synchronize Firestore messages into the local Room database.
 
-   ###  Backend as a Service (BaaS)
+### Application settings
 
-   - **Google Firebase:**
-     - Authentication: Quản lý người dùng và xác thực.
-     - Firestore Database: Cơ sở dữ liệu NoSQL linh hoạt và có khả năng mở rộng để lưu trữ dữ liệu ứng dụng.
-     - Cloud Storage: Lưu trữ và quản lý các tệp phương tiện (hình ảnh, video) của người dùng.
-     - Analytics: Thu thập dữ liệu phân tích để hiểu hành vi người dùng và cải thiện ứng dụng.
+- Switch between light and dark themes.
+- Persist the selected theme with Preferences DataStore.
 
-   ###  Công cụ phát triển & Triển khai (Development Tools & Deployment)
+## Architecture
 
-   - **Hệ thống kiểm soát phiên bản:** Git, GitHub
-   - **Môi trường phát triển tích hợp (IDE):** Android Studio
-   - **Triển khai:** Firebase CLI (dành cho quản lý và triển khai các dịch vụ Firebase)
+The project is a single Android application module organized by feature. It follows an MVVM-style data flow using manually created `ViewModelProvider.Factory` classes.
 
-## 4. Các tính năng chính
+```mermaid
+flowchart TD
+    UI["Jetpack Compose screens"] --> VM["Feature ViewModels"]
+    VM --> Repository["Repositories"]
 
-   Ứng dụng Paws Hearts cung cấp các tính năng đa dạng nhằm kết nối và hỗ trợ cộng đồng yêu thú cưng:
+    Repository --> Auth["Firebase Authentication"]
+    Repository --> Firestore["Cloud Firestore"]
+    Repository --> Room["Room local database"]
+    Repository --> Cloudinary["Cloudinary via Retrofit"]
 
-   ###  Xác thực & Quản lý tài khoản
+    Firestore --> Functions["Firebase Cloud Functions prototype"]
+    Functions --> Firestore
 
-   - **Đăng ký tài khoản:** Người dùng có thể đăng ký tài khoản mới bằng email và mật khẩu hoặc thông qua tài khoản Google.
-   - **Đăng nhập:** Đăng nhập an toàn với các phương thức xác thực đã đăng ký.
-   - **Quản lý thông tin tài khoản:** Xem và cập nhật thông tin cá nhân, ảnh đại diện, và các thiết lập tài khoản khác.
-   - **Quên/Đặt lại mật khẩu:** Hỗ trợ khôi phục mật khẩu qua email khi người dùng quên.
-   - **Bảo mật:** Dữ liệu người dùng được bảo vệ thông qua Firebase Authentication và các quy tắc bảo mật của Firestore.
-
-   ###  Quản lý hồ sơ & Thú cưng
-
-   - **Hồ sơ cá nhân:** Tạo và quản lý hồ sơ cá nhân chi tiết, bao gồm thông tin liên hệ và giới thiệu bản thân.
-   - **Quản lý thú cưng:** Thêm, chỉnh sửa và xóa thông tin về thú cưng của bạn (tên, loài, giống, ngày sinh, lịch sử y tế, ảnh).
-
-   ###  Bài viết & Tương tác cộng đồng
-
-   - **Tạo bài viết:** Chia sẻ hình ảnh, video và văn bản về thú cưng của bạn hoặc các hoạt động cộng đồng.
-   - **Trang chủ:** Hiển thị các bài viết mới nhất và phổ biến từ cộng đồng.
-   - **Bình luận & Thích:** Tương tác với các bài viết thông qua bình luận và biểu tượng cảm xúc.
-   - **Bài viết của tôi:** Xem và quản lý tất cả các bài viết của bạn.
-
-   ###  Nhận nuôi thú cưng
-
-   - **Đăng bài nhận nuôi:** Đăng tin về thú cưng cần nhận nuôi, cung cấp thông tin chi tiết và hình ảnh.
-   - **Tìm kiếm thú cưng:** Duyệt qua danh sách thú cưng cần nhận nuôi, lọc theo các tiêu chí (loài, giống, địa điểm).
-   - **Chi tiết thú cưng:** Xem thông tin chi tiết về từng thú cưng, bao gồm thông tin liên hệ của người đăng.
-
-   ###  Hoạt động cộng đồng
-
-   - **Tạo hoạt động:** Tổ chức và quản lý các sự kiện, buổi gặp mặt hoặc hoạt động từ thiện liên quan đến thú cưng.
-   - **Tham gia hoạt động:** Tìm kiếm và đăng ký tham gia các hoạt động cộng đồng.
-   - **Chi tiết hoạt động:** Xem thông tin chi tiết về từng hoạt động, bao gồm thời gian, địa điểm và mô tả.
-
-   ###  Hệ thống tin nhắn
-
-   - **Trò chuyện trực tiếp:** Giao tiếp riêng tư với người dùng khác trong ứng dụng.
-   - **Quản lý cuộc trò chuyện:** Xem danh sách các cuộc trò chuyện và lịch sử tin nhắn.
-   - **Thông báo tin nhắn mới:** Nhận thông báo khi có tin nhắn mới.
-
-   ###  Quyên góp
-
-   - **Quyên góp cho tổ chức/cá nhân:** Hỗ trợ tài chính cho các hoạt động bảo vệ động vật hoặc các trường hợp thú cưng cần giúp đỡ.
-   - **Lịch sử quyên góp:** Theo dõi các khoản quyên góp của bạn.
-
-   ###  Thông báo
-
-   - **Thông báo trong ứng dụng:** Nhận các thông báo về tin nhắn mới, hoạt động, bình luận và các sự kiện quan trọng khác.
-   - **Quản lý thông báo:** Tùy chỉnh cài đặt thông báo.
-
-   ###  Yêu cầu khác (phi kỹ thuật)
-
-   - **An toàn & tốc độ:** Đảm bảo quyền riêng tư và bảo mật dữ liệu người dùng, tối ưu hóa hiệu suất ứng dụng để có trải nghiệm mượt mà.
-   - **Giao diện người dùng (UI):** Thiết kế thân thiện, dễ sử dụng, với khả năng hỗ trợ chế độ sáng/tối (Dark/Light Mode) và hiển thị hình ảnh rõ nét.
-   - **Ngôn ngữ:** Hỗ trợ đa ngôn ngữ (nếu có).
-
-
-## 5. Cấu trúc dự án
-
-Dự án Paws Hearts được tổ chức theo cấu trúc module rõ ràng để dễ dàng phát triển và bảo trì. Dưới đây là các thư mục và thành phần chính:
-
+    Room --> Flow["Flow / StateFlow"]
+    Firestore --> Flow
+    Flow --> UI
 ```
+
+### Chat synchronization flow
+
+Chat is the clearest example of the local/remote data flow in the project.
+
+```text
+Outgoing message
+  -> save to Room as SENDING
+  -> send to Firestore with the same message ID
+  -> update Room to SENT
+  -> update Room to FAILED if the remote write fails
+
+Incoming message
+  -> Firestore snapshot listener
+  -> upsert into Room
+  -> Room Flow
+  -> ViewModel StateFlow
+  -> Compose UI
+```
+
+Using the same message ID locally and remotely prevents a successful message from appearing twice after synchronization.
+
+## Tech stack
+
+| Area | Technologies |
+| --- | --- |
+| Language | Kotlin 1.9.24 |
+| UI | Jetpack Compose, Material 3, Navigation Compose |
+| Architecture | MVVM-style, Repository pattern, ViewModel, StateFlow/Flow |
+| Asynchronous work | Kotlin Coroutines |
+| Local persistence | Room, Preferences DataStore |
+| Authentication | Firebase Authentication, Google Sign-In |
+| Remote data | Cloud Firestore |
+| Backend automation | Firebase Cloud Functions prototype, TypeScript |
+| Media upload | Cloudinary, Retrofit, Gson |
+| Image loading | Coil |
+| Build | Gradle Kotlin DSL, Version Catalog, KSP |
+
+## Project structure
+
+```text
 Paws-Hearts/
-├── app/                      # Module ứng dụng chính
-│   ├── build/                # Kết quả build của ứng dụng
-│   ├── src/                  # Mã nguồn của ứng dụng
-│   │   ├── main/             # Mã nguồn chính
-│   │   │   ├── AndroidManifest.xml # File manifest của Android
-│   │   │   ├── java/         # Mã nguồn Kotlin/Java
-│   │   │   │   └── com/example/pawshearts/
-│   │   │   │       ├── activities/   # Module quản lý các hoạt động cộng đồng
-│   │   │   │       ├── adopt/        # Module liên quan đến tính năng nhận nuôi thú cưng
-│   │   │   │       ├── auth/         # Module quản lý xác thực người dùng (đăng ký, đăng nhập)
-│   │   │   │       ├── data/         # Lớp dữ liệu (repository, model, local database)
-│   │   │   │       ├── donate/       # Module tính năng quyên góp
-│   │   │   │       ├── messages/     # Module hệ thống tin nhắn
-│   │   │   │       ├── navmodel/     # Định nghĩa điều hướng và cấu trúc ứng dụng
-│   │   │   │       ├── notification/ # Module quản lý thông báo
-│   │   │   │       ├── post/         # Module quản lý bài viết và tương tác
-│   │   │   │       ├── profile/      # Module quản lý hồ sơ người dùng
-│   │   │   │       ├── setting/      # Module cài đặt ứng dụng
-│   │   │   │       ├── ui/           # Các thành phần UI chung và theme
-│   │   │   │       └── ...           # Các tệp Kotlin cấp cao (MainActivity, MyApplication, SplashScreen)
-│   │   │   └── res/              # Tài nguyên ứng dụng (layout, drawable, values)
-│   ├── build.gradle.kts      # Cấu hình Gradle cho module ứng dụng
-│   └── ...                   # Các tệp khác của module ứng dụng
-├── build.gradle.kts          # Cấu hình Gradle cấp độ dự án
-├── firebase.json             # Cấu hình Firebase Hosting/Functions
-├── firestore-debug.log       # Nhật ký debug của Firestore
-├── gradle/                   # Tệp wrapper của Gradle
-├── gradlew                   # Script Gradle Wrapper cho Linux/macOS
-├── gradlew.bat               # Script Gradle Wrapper cho Windows
-├── local.properties          # Thuộc tính cục bộ (SDK location, private keys)
-├── settings.gradle.kts       # Cấu hình module dự án Gradle
-└── README.md                 # Tài liệu dự án
+├── app/src/main/java/com/example/pawshearts/
+│   ├── auth/           # Registration, login, Google Sign-In, auth state
+│   ├── profile/        # User profile and follow system
+│   ├── post/           # Community posts, likes, and comments
+│   ├── adopt/          # Pet-adoption listings and filters
+│   ├── activities/     # Community activities and registrations
+│   ├── messages/       # Firestore + Room messaging flow
+│   ├── notification/   # In-app notification center
+│   ├── donate/         # Demonstration donation-information screens
+│   ├── setting/        # Persistent theme preference
+│   ├── image/          # Cloudinary and Retrofit integration
+│   ├── data/local/     # Room profile cache
+│   ├── navmodel/       # Compose navigation graph and routes
+│   └── ui/theme/       # Material 3 theme
+├── functions/src/      # Firebase Cloud Functions written in TypeScript
+├── gradle/             # Version Catalog and Gradle Wrapper files
+├── firebase.json       # Firebase Functions and Emulator configuration
+└── README.md
 ```
 
+## Getting started
 
-## 6. Cài đặt app & Demo
+### Prerequisites
 
-   **Cài đặt app:**
+- Android Studio with JDK 17 or later
+- Android SDK 36
+- An emulator or physical device running Android 7.0 (API 24) or later
+- A Firebase project
+- A Cloudinary account with an unsigned upload preset
+- Node.js 22 and Firebase CLI only if you want to deploy the Cloud Functions
 
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/Le-Van-Khoicw/Paws-Hearts.git
+cd Paws-Hearts
+```
 
-   **Video demo app:**
+Open the project in Android Studio and allow Gradle to synchronize the dependencies.
 
+### 2. Configure Firebase
 
+1. Create a Firebase project.
+2. Register an Android application with package name `com.example.pawshearts`.
+3. Enable **Email/Password** and **Google** in Firebase Authentication.
+4. Create a Cloud Firestore database and configure appropriate Security Rules for your environment.
+5. Download your Firebase `google-services.json` file and place it at:
+
+```text
+app/google-services.json
+```
+
+For Google Sign-In, generate the signing fingerprints and register the required SHA fingerprint in Firebase:
+
+```bash
+./gradlew signingReport
+```
+
+On Windows:
+
+```powershell
+.\gradlew.bat signingReport
+```
+
+Download `google-services.json` again after updating the Firebase Android configuration.
+
+The current source also contains a project-specific `default_web_client_id`. Replace it with the client ID generated for your Firebase project before testing Google Sign-In.
+
+### 3. Configure Cloudinary
+
+Create a Cloudinary cloud and an unsigned upload preset. The current student version reads the cloud name and preset from the media-upload source files:
+
+- `app/src/main/java/com/example/pawshearts/image/CloudinaryService.kt`
+- `app/src/main/java/com/example/pawshearts/image/ImageRepository.kt`
+- the feature repository implementations that upload media
+
+Replace the existing project-specific values with your own. For a public or production project, move these values into local build configuration instead of keeping them in source code, and restrict the upload preset in the Cloudinary dashboard.
+
+### 4. Build and run the Android app
+
+Build a debug APK:
+
+```bash
+./gradlew assembleDebug
+```
+
+On Windows:
+
+```powershell
+.\gradlew.bat assembleDebug
+```
+
+Then run the `app` configuration from Android Studio on an emulator or connected Android device.
+
+### 5. Build the Firebase Cloud Functions prototype
+
+The repository contains TypeScript functions for notification and follow-event experiments in `functions/src/index.ts`.
+
+```bash
+cd functions
+npm ci
+npm run build
+cd ..
+
+firebase login
+firebase use --add
+firebase deploy --only functions
+```
+
+Select your own Firebase project when running `firebase use --add`; do not deploy to the project ID stored by another contributor. The current Android and Cloud Functions notification schemas still require alignment before this flow should be treated as complete.
+
+## Optional: Firebase Emulator Suite
+
+The application contains Auth and Firestore emulator configuration, but real Firebase services are used by default. To use the local emulators:
+
+1. Change `useEmulator` to `true` in `MyApplication.kt`.
+2. Start the configured services:
+
+```bash
+firebase emulators:start --only auth,firestore,functions
+```
+
+Android Emulator traffic is routed to the host through `10.0.2.2`. A physical Android device must use the development machine's reachable LAN address instead.
+
+## Validation commands
+
+Run local unit tests:
+
+```bash
+./gradlew testDebugUnitTest
+```
+
+Current automated-test coverage is minimal. The existing instrumented-test template also needs its package name corrected before it can validate the application.
+
+## Known limitations
+
+- Password-reset UI is not implemented.
+- The donation section is a static demonstration screen and does not process or verify payments.
+- The Android notification reader and Cloud Functions currently use different Firestore collection schemas and require integration cleanup.
+- Chat stores failed-message state but does not yet provide an automatic background retry queue.
+- Firebase and Cloudinary configuration is currently tied to the original student environment and should be replaced before reuse.
+- The repository does not currently include production Firestore rules, deployment hardening, or complete automated-test coverage.
+
+## Contributors
+
+Paws & Hearts was developed as an academic team project. See the complete [contributors list](https://github.com/Le-Van-Khoicw/Paws-Hearts/graphs/contributors).
